@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Awareness Quiz & Training</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #100507, #420b17, #17070d, #650d20);
+    background-size: 300% 300%;
+    animation: backgroundMove 12s ease infinite;
+}
+
+@keyframes backgroundMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+    background: rgba(0,0,0,0.4);
+    border-bottom: 1px solid #a52b45;
+}
+
+header h1 {
+    color: #ff526f;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.tagline {
+    color: #ffd5dc;
+    margin-bottom: 15px;
+}
+
+#clock {
+    color: #ffb8c5;
+}
+
+.container {
+    width: 90%;
+    max-width: 850px;
+    margin: 30px auto;
+}
+
+.card {
+    background: rgba(15,5,9,0.88);
+    border: 1px solid #9e3048;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 25px rgba(255,35,75,0.15);
+}
+
+h2 {
+    color: #ff617d;
+    margin-bottom: 18px;
+}
+
+#question {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    background: #35111c;
+    border: 1px solid #873047;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    text-align: left;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.option:hover:not(:disabled) {
+    background: #791c35;
+    transform: translateX(4px);
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+.correct {
+    background: #17613d !important;
+    border-color: #42d995;
+}
+
+.wrong {
+    background: #861d30 !important;
+    border-color: #ff7085;
+}
+
+.main-btn {
+    background: #d52e50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.main-btn:hover {
+    background: #ff526f;
+}
+
+#feedback {
+    margin-top: 15px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #ffc0cc;
+    margin-bottom: 15px;
+}
+
+.note {
+    color: #f5dce2;
+    line-height: 1.8;
+}
+
+.note li {
+    margin-left: 20px;
+    margin-bottom: 8px;
+}
+
+.tip {
+    background: #32101b;
+    border-left: 4px solid #ff526f;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 5px;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #e9a8b5;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔐 CYBER AWARENESS</h1>
+
+    <p class="tagline">
+        Think Before You Click – Stay Smart, Stay Safe, Stay Cyber Secure!
+    </p>
+
+    <p id="clock"></p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>🎯 Cyber Security Quiz</h2>
+
+        <div class="stats">
+            <span id="questionCount">Question 1</span>
+            <span id="score">Score: 0</span>
+        </div>
+
+        <h3 id="question">Loading question...</h3>
+
+        <div id="options"></div>
+
+        <p id="feedback"></p>
+
+        <button class="main-btn" id="nextBtn"
+        onclick="nextQuestion()" disabled>
+            Next Question ➜
+        </button>
+
+        <button class="main-btn" onclick="restartQuiz()">
+            🔄 Restart Quiz
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>📖 What is Cyber Security Awareness?</h2>
+
+        <p class="note">
+            Cyber Security Awareness means understanding online
+            threats and learning how to protect our personal
+            information, devices and data while using the internet.
+        </p>
+
+        <br>
+
+        <h2>🛡️ Important Cyber Safety Tips</h2>
+
+        <ul class="note">
+            <li>Use strong and unique passwords.</li>
+            <li>Never share your OTP or password.</li>
+            <li>Avoid clicking unknown links.</li>
+            <li>Do not download files from untrusted websites.</li>
+            <li>Check website addresses before entering information.</li>
+            <li>Keep your mobile and computer software updated.</li>
+            <li>Enable two-factor authentication.</li>
+            <li>Avoid sensitive activities on public Wi-Fi.</li>
+            <li>Report suspicious online activity.</li>
+        </ul>
+
+    </div>
+
+    <div class="card">
+
+        <h2>⚠️ Common Cyber Threats</h2>
+
+        <div class="tip">
+            <b>1. Phishing:</b>
+            Fake emails or messages that try to steal personal information.
+        </div>
+
+        <div class="tip">
+            <b>2. Hacking:</b>
+            Unauthorized access to a computer or account.
+        </div>
+
+        <div class="tip">
+            <b>3. Malware:</b>
+            Harmful software that can damage devices.
+        </div>
+
+        <div class="tip">
+            <b>4. Online Scams:</b>
+            Fake offers or messages designed to trick people.
+        </div>
+
+        <div class="tip">
+            <b>5. Identity Theft:</b>
+            Using another person's personal information without permission.
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>💡 Remember</h2>
+
+        <p class="note">
+            Your online safety is in your hands. Be alert,
+            think carefully before clicking, and protect
+            your digital identity.
+        </p>
+
+        <br>
+
+        <h3 style="color:#ff617d;">
+            Stay Alert. Stay Protected. Stay Cyber Smart! ❤️
+        </h3>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Cyber Awareness Quiz & Training |
+    Learn • Practice • Protect
+</footer>
+
+<script>
+
+const questions = [
+
+{
+q: "What should you do when you receive an unknown link?",
+o: ["Click immediately", "Ignore or verify it first", "Share with friends", "Enter your password"],
+a: 1,
+e: "Always verify suspicious links before opening them."
+},
+
+{
+q: "What is an OTP used for?",
+o: ["Playing games", "Watching videos", "Verifying an identity or transaction", "Downloading music"],
+a: 2,
+e: "OTP is a One-Time Password used for verification. Never share it."
+},
+
+{
+q: "Which is the strongest password?",
+o: ["123456", "password", "vedha123", "R!ver#82Moon@5"],
+a: 3,
+e: "A strong password combines letters, numbers and symbols."
+},
+
+{
+q: "What does phishing mean?",
+o: ["Fake messages to steal information", "Playing online games", "Updating software", "Creating websites"],
+a: 0,
+e: "Phishing uses fake messages or websites to steal information."
+},
+
+{
+q: "What should you do if someone asks for your bank OTP?",
+o: ["Share it quickly", "Send it by message", "Never share it", "Post it online"],
+a: 2,
+e: "Never share your OTP, even with someone claiming to be from a bank."
+},
+
+{
+q: "Which website connection is generally safer?",
+o: ["Unknown website", "HTTPS website", "Random download link", "Fake shopping website"],
+a: 1,
+e: "HTTPS encrypts the connection, but always check whether the website is genuine."
+},
+
+{
+q: "Why should we update mobile software?",
+o: ["Remove photos", "Make the screen bigger", "Delete contacts", "Fix security problems"],
+a: 3,
+e: "Updates often fix security weaknesses."
+},
+
+{
+q: "What is malware?",
+o: ["A harmful computer program", "A search engine", "A keyboard", "A safe password"],
+a: 0,
+e: "Malware is harmful software that can damage devices or steal information."
+},
+
+{
+q: "What should you do on public Wi-Fi?",
+o: ["Share bank details", "Use caution and avoid sensitive transactions", "Share your password", "Download unknown files"],
+a: 1,
+e: "Public Wi-Fi may be unsafe. Avoid sensitive activities unless you have a trusted secure connection."
+},
+
+{
+q: "What is two-factor authentication?",
+o: ["Using two usernames", "Creating two websites", "An extra step to verify your identity", "Sharing two passwords"],
+a: 2,
+e: "Two-factor authentication adds another verification step to protect your account."
+},
+
+{
+q: "What should you do if you receive a suspicious email?",
+o: ["Open every attachment", "Reply with your details", "Forward your password", "Report it and avoid its links"],
+a: 3,
+e: "Avoid suspicious attachments and links. Report the email as phishing."
+},
+
+{
+q: "What is identity theft?",
+o: ["Protecting your account", "Using another person's personal information without permission", "Changing your password", "Updating an app"],
+a: 1,
+e: "Identity theft happens when someone misuses another person's information."
+}
+
+];
+
+let availableQuestions = [];
+let currentQuestion;
+let score = 0;
+let questionNumber = 0;
+let answered = false;
+
+function shuffle(array) {
+
+    let copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+
+        let j = Math.floor(Math.random() * (i + 1));
+
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+
+    }
+
+    return copy;
+}
+
+function loadQuestion() {
+
+    if (availableQuestions.length === 0) {
+        finishQuiz();
+        return;
+    }
+
+    currentQuestion = availableQuestions.pop();
+
+    answered = false;
+
+    document.getElementById("question").textContent =
+        currentQuestion.q;
+
+    document.getElementById("questionCount").textContent =
+        "Question " + (questionNumber + 1);
+
+    document.getElementById("score").textContent =
+        "Score: " + score;
+
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("nextBtn").disabled = true;
+
+    let optionsDiv = document.getElementById("options");
+
+    optionsDiv.innerHTML = "";
+
+    let shuffledOptions = shuffle(
+        currentQuestion.o.map((option, index) => ({
+            text: option,
+            correct: index === currentQuestion.a
+        }))
+    );
+
+    shuffledOptions.forEach(option => {
+
+        let button = document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent = option.text;
+
+        button.onclick = function() {
+            checkAnswer(button, option.correct);
+        };
+
+        optionsDiv.appendChild(button);
+
+    });
+
+}
+
+function checkAnswer(button, isCorrect) {
+
+    if (answered) return;
+
+    answered = true;
+
+    let buttons = document.querySelectorAll(".option");
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    if (isCorrect) {
+
+        score++;
+
+        button.classList.add("correct");
+
+        document.getElementById("feedback").textContent =
+            "🎉 Correct! " + currentQuestion.e;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        buttons.forEach(btn => {
+
+            if (btn.textContent ===
+                currentQuestion.o[currentQuestion.a]) {
+
+                btn.classList.add("correct");
+
+            }
+
+        });
+
+        document.getElementById("feedback").textContent =
+            "❌ Not quite! " + currentQuestion.e;
+
+    }
+
+    document.getElementById("score").textContent =
+        "Score: " + score;
+
+    document.getElementById("nextBtn").disabled = false;
+
+    questionNumber++;
+
+}
+
+function nextQuestion() {
+
+    if (!answered) return;
+
+    loadQuestion();
+
+}
+
+function finishQuiz() {
+
+    document.getElementById("question").textContent =
+        "🏆 Quiz Completed!";
+
+    document.getElementById("options").innerHTML = "";
+
+    document.getElementById("feedback").textContent =
+        "Your final score is " + score + " out of " +
+        questions.length + ". " +
+        (score >= 9 ? "Excellent work! 🌟" :
+        score >= 6 ? "Good job! Keep learning! 👏" :
+        "Keep practising and stay cyber safe! 💪");
+
+    document.getElementById("questionCount").textContent =
+        "Completed";
+
+    document.getElementById("nextBtn").disabled = true;
+
+}
+
+function restartQuiz() {
+
+    score = 0;
+
+    questionNumber = 0;
+
+    availableQuestions = shuffle(questions);
+
+    loadQuestion();
+
+}
+
+function updateClock() {
+
+    let now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleDateString() + " | " +
+        now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock, 1000);
+
+updateClock();
+
+restartQuiz();
+
+</script>
+
+</body>
+</html>
